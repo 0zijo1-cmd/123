@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>吉祥物印象挑戰</title>
+  <title>我對孫孫們的印象！| GMMTV Mascot</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -15,9 +15,6 @@
       --black: #111111;
       --gray-light: #EEEEEE;
       --text-muted: #888888;
-      --radius-sm: 12px;
-      --radius-md: 20px;
-      --radius-lg: 28px;
     }
 
     * {
@@ -27,6 +24,7 @@
       font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, sans-serif;
       font-weight: 400;
       -webkit-tap-highlight-color: transparent;
+      border-radius: 0 !important;
     }
 
     body {
@@ -44,12 +42,12 @@
       max-width: 480px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
+    /* 頂部直角卡片 */
     .header-card {
       background: var(--card-bg);
-      border-radius: var(--radius-lg);
       padding: 26px 22px 20px;
       display: flex;
       flex-direction: column;
@@ -62,8 +60,7 @@
       color: var(--black);
       font-size: 11px;
       font-weight: 500;
-      padding: 4px 12px;
-      border-radius: 99px;
+      padding: 4px 10px;
       letter-spacing: 0.5px;
     }
 
@@ -82,9 +79,9 @@
       line-height: 1.5;
     }
 
+    /* 設定列 */
     .config-box {
       background: var(--card-bg);
-      border-radius: var(--radius-md);
       padding: 12px;
       display: flex;
       gap: 10px;
@@ -93,7 +90,6 @@
     .input-clean {
       border: none;
       background: var(--gray-light);
-      border-radius: var(--radius-sm);
       padding: 10px 14px;
       font-size: 13px;
       font-weight: 400;
@@ -102,9 +98,9 @@
       width: 100%;
     }
 
+    /* 快捷候選池 */
     .pool-card {
       background: var(--card-bg);
-      border-radius: var(--radius-md);
       padding: 16px;
       display: flex;
       flex-direction: column;
@@ -131,8 +127,7 @@
       align-items: center;
       gap: 8px;
       background: var(--gray-light);
-      border-radius: 99px;
-      padding: 5px 12px 5px 5px;
+      padding: 6px 12px 6px 6px;
       font-size: 13px;
       font-weight: 400;
       cursor: pointer;
@@ -146,13 +141,13 @@
     }
 
     .chip-item img {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
+      width: 24px;
+      height: 24px;
       object-fit: cover;
       display: block;
     }
 
+    /* 填寫列表 */
     .list-container {
       display: flex;
       flex-direction: column;
@@ -161,7 +156,6 @@
 
     .impression-card {
       background: var(--card-bg);
-      border-radius: var(--radius-md);
       padding: 14px;
       display: flex;
       gap: 12px;
@@ -173,7 +167,6 @@
       height: 72px;
       min-width: 72px;
       background: var(--gray-light);
-      border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
       position: relative;
@@ -192,7 +185,7 @@
     .avatar-hover {
       position: absolute;
       inset: 0;
-      background: rgba(17, 17, 17, 0.4);
+      background: rgba(17, 17, 17, 0.45);
       color: #fff;
       font-size: 10px;
       font-weight: 400;
@@ -247,7 +240,6 @@
       width: 100%;
       background: var(--gray-light);
       border: none;
-      border-radius: 10px;
       padding: 9px 12px;
       font-size: 13px;
       font-weight: 300;
@@ -255,6 +247,7 @@
       outline: none;
     }
 
+    /* 底部操作鈕 */
     .button-deck {
       display: flex;
       gap: 10px;
@@ -264,7 +257,6 @@
     .action-btn {
       flex: 1;
       padding: 15px;
-      border-radius: var(--radius-md);
       border: none;
       font-size: 14px;
       font-weight: 500;
@@ -285,6 +277,7 @@
       color: var(--black);
     }
 
+    /* 彈窗 */
     .modal {
       display: none;
       position: fixed;
@@ -299,7 +292,6 @@
 
     .modal-card {
       background: #fff;
-      border-radius: var(--radius-lg);
       max-width: 400px;
       width: 100%;
       padding: 18px;
@@ -312,7 +304,6 @@
 
     .modal-preview {
       width: 100%;
-      border-radius: 16px;
       max-height: 58vh;
       object-fit: contain;
     }
@@ -333,32 +324,35 @@
 
   <div class="app-shell">
     <header class="header-card">
-      <div class="badge-pill">Mascot Vibes</div>
-      <h1>吉祥物第一印象</h1>
-      <p>點選下方候選角色或換圖，寫下一句對牠們的真實印象。</p>
+      <div class="badge-pill">GMMTV MASCOT</div>
+      <h1>我對孫孫們的印象！</h1>
+      <p>挑選你想聊的孫孫，分享你眼中的他們（性格／初印象／名場面等）～</p>
     </header>
 
     <div class="config-box">
-      <input type="text" id="eventTitle" class="input-clean" value="吉祥物第一印象挑戰" placeholder="輸入活動標題" />
+      <input type="text" id="eventTitle" class="input-clean" value="我眼中的 GMMTV 孫孫們" placeholder="活動標題" />
       <input type="text" id="userSignature" class="input-clean" value="@你的暱稱" placeholder="你的署名" style="max-width: 120px;" />
     </div>
 
+    <!-- 候選池 -->
     <div class="pool-card">
       <div class="pool-title">
-        <span>快速加入候選池</span>
+        <span>快速加入孫孫候選池</span>
         <span style="font-size: 11px;">點擊即加入</span>
       </div>
       <div class="chips-flow" id="mascotPool"></div>
     </div>
 
+    <!-- 填寫清單 -->
     <div class="list-container" id="itemList"></div>
 
     <div class="button-deck">
-      <button class="action-btn btn-secondary" onclick="addNewItem()">＋ 新增一欄</button>
-      <button class="action-btn btn-primary" onclick="renderCanvasCard()">✨ 生成分享圖</button>
+      <button class="action-btn btn-secondary" onclick="addNewItem()">＋ 自訂加一隻</button>
+      <button class="action-btn btn-primary" onclick="renderSharpCanvasCard()">✨ 生成分享圖</button>
     </div>
   </div>
 
+  <!-- 彈窗 -->
   <div class="modal" id="modalOverlay">
     <div class="modal-card">
       <img id="modalPreviewImg" class="modal-preview" alt="分享圖" />
@@ -373,20 +367,19 @@
   <canvas id="exportCanvas"></canvas>
 
   <script>
-    // 預設 6 個高穩定度測試圖片（完全跨域可載入）
+    // 預設測試選項（晚點上傳官方孫孫圖片後直接替換這裡的 img 路徑與名字）
     const DEFAULT_MASCOTS = [
-      { name: "香脆薯條", img: "https://picsum.photos/id/292/200/200" },
-      { name: "多汁漢堡", img: "https://picsum.photos/id/1080/200/200" },
-      { name: "甜筒冰淇淋", img: "https://picsum.photos/id/429/200/200" },
-      { name: "手沖咖啡", img: "https://picsum.photos/id/1060/200/200" },
-      { name: "經典披薩", img: "https://picsum.photos/id/312/200/200" },
-      { name: "草莓甜甜圈", img: "https://picsum.photos/id/490/200/200" }
+      { name: "孫孫 1", img: "https://picsum.photos/id/292/200/200" },
+      { name: "孫孫 2", img: "https://picsum.photos/id/1080/200/200" },
+      { name: "孫孫 3", img: "https://picsum.photos/id/429/200/200" },
+      { name: "孫孫 4", img: "https://picsum.photos/id/1060/200/200" },
+      { name: "孫孫 5", img: "https://picsum.photos/id/312/200/200" },
+      { name: "孫孫 6", img: "https://picsum.photos/id/490/200/200" }
     ];
 
     let currentItems = [
-      { name: "香脆薯條", img: DEFAULT_MASCOTS[0].img, impression: "剛起鍋自帶鹽粒根本不需要沾醬！" },
-      { name: "多汁漢堡", img: DEFAULT_MASCOTS[1].img, impression: "原本以為是反派，結果是全劇最可愛吃貨。" },
-      { name: "甜筒冰淇淋", img: DEFAULT_MASCOTS[2].img, impression: "融化速度比我下班打卡還快。" }
+      { name: "孫孫 1", img: DEFAULT_MASCOTS[0].img, impression: "以為是高冷酷哥，結果直播一開反差萌直接笑翻。" },
+      { name: "孫孫 2", img: DEFAULT_MASCOTS[1].img, impression: "名場面製造機！每次合照表情都超級有戲。" }
     ];
 
     let lastGeneratedBlob = null;
@@ -421,10 +414,10 @@
           </div>
           <div class="card-body">
             <div class="card-top">
-              <input type="text" class="name-input" value="${item.name}" oninput="currentItems[${index}].name = this.value" placeholder="角色名稱" />
+              <input type="text" class="name-input" value="${item.name}" oninput="currentItems[${index}].name = this.value" placeholder="孫孫名稱" />
               <button class="btn-delete" onclick="removeItem(${index})">✕</button>
             </div>
-            <input type="text" class="impression-input" value="${item.impression}" oninput="currentItems[${index}].impression = this.value" placeholder="輸入一句話印象..." />
+            <input type="text" class="impression-input" value="${item.impression}" oninput="currentItems[${index}].impression = this.value" placeholder="分享性格、初印象、名場面等..." />
           </div>
         `;
         listEl.appendChild(card);
@@ -449,7 +442,7 @@
 
     function addNewItem() {
       currentItems.push({
-        name: `新角色 ${currentItems.length + 1}`,
+        name: `新孫孫 ${currentItems.length + 1}`,
         img: "https://picsum.photos/id/1025/200/200",
         impression: ""
       });
@@ -462,7 +455,8 @@
       renderList();
     }
 
-    async function renderCanvasCard() {
+    // Canvas 渲染
+    async function renderSharpCanvasCard() {
       const canvas = document.getElementById("exportCanvas");
       const ctx = canvas.getContext("2d");
 
@@ -471,7 +465,7 @@
       const headerH = 250;
       const footerH = 100;
       const margin = 50;
-      const gap = 18;
+      const gap = 16;
 
       const totalH = headerH + (currentItems.length * (cardHeight + gap)) + footerH;
       canvas.width = width;
@@ -482,18 +476,24 @@
 
       const boxW = width - (margin * 2);
 
-      drawRoundedRect(ctx, margin, 46, boxW, 164, 32, "#FFFFFF");
+      // 頂部純白卡
+      ctx.fillStyle = "#FFFFFF";
+      ctx.fillRect(margin, 46, boxW, 164);
 
-      drawRoundedRect(ctx, margin + 36, 76, 140, 32, 16, "#a6fba5");
+      // GMMTV MASCOT 綠色直角標籤
+      ctx.fillStyle = "#a6fba5";
+      ctx.fillRect(margin + 36, 76, 150, 30);
       ctx.fillStyle = "#111111";
-      ctx.font = "500 15px 'Plus Jakarta Sans', sans-serif";
-      ctx.fillText("MASCOT VIBES", margin + 54, 97);
+      ctx.font = "500 14px 'Plus Jakarta Sans', sans-serif";
+      ctx.fillText("GMMTV MASCOT", margin + 48, 96);
 
-      const title = document.getElementById("eventTitle").value || "吉祥物第一印象挑戰";
+      // 主標題
+      const title = document.getElementById("eventTitle").value || "我眼中的 GMMTV 孫孫們";
       ctx.fillStyle = "#111111";
       ctx.font = "500 42px 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif";
       ctx.fillText(title, margin + 36, 164);
 
+      // 署名
       const sig = document.getElementById("userSignature").value || "@匿名粉絲";
       ctx.fillStyle = "#888888";
       ctx.font = "400 22px 'Noto Sans TC', sans-serif";
@@ -507,20 +507,19 @@
         const item = currentItems[i];
         const cardY = startY + (i * (cardHeight + gap));
 
-        drawRoundedRect(ctx, margin, cardY, boxW, cardHeight, 24, "#FFFFFF");
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect(margin, cardY, boxW, cardHeight);
 
         const avatarSize = 114;
         const avatarX = margin + 20;
         const avatarY = cardY + 20;
 
-        drawRoundedRect(ctx, avatarX, avatarY, avatarSize, avatarSize, 18, "#EEEEEE");
+        ctx.fillStyle = "#EEEEEE";
+        ctx.fillRect(avatarX, avatarY, avatarSize, avatarSize);
 
         try {
           const imgObj = await loadImage(item.img);
-          ctx.save();
-          roundedClip(ctx, avatarX, avatarY, avatarSize, avatarSize, 18);
           ctx.drawImage(imgObj, avatarX, avatarY, avatarSize, avatarSize);
-          ctx.restore();
         } catch (e) {}
 
         const textStartX = avatarX + avatarSize + 26;
@@ -528,11 +527,12 @@
 
         ctx.fillStyle = "#111111";
         ctx.font = "500 28px 'Noto Sans TC', sans-serif";
-        ctx.fillText(item.name || `角色 ${i + 1}`, textStartX, cardY + 52);
+        ctx.fillText(item.name || `孫孫 ${i + 1}`, textStartX, cardY + 52);
 
         const bubbleY = cardY + 72;
         const bubbleH = 54;
-        drawRoundedRect(ctx, textStartX, bubbleY, maxTextW, bubbleH, 14, "#F7F7F7");
+        ctx.fillStyle = "#F7F7F7";
+        ctx.fillRect(textStartX, bubbleY, maxTextW, bubbleH);
 
         ctx.fillStyle = "#333333";
         ctx.font = "300 21px 'Noto Sans TC', sans-serif";
@@ -541,10 +541,11 @@
         ctx.fillText(clipped, textStartX + 16, bubbleY + 34);
       }
 
+      // 底部活動 Hashtag
       ctx.fillStyle = "#888888";
       ctx.font = "400 18px 'Noto Sans TC', sans-serif";
       ctx.textAlign = "center";
-      ctx.fillText("#吉祥物第一印象 • 同好交流使用", width / 2, totalH - 42);
+      ctx.fillText("#GMMTVMascot #我眼中的GMMTV孫孫們 • 粉絲同好交流", width / 2, totalH - 42);
       ctx.textAlign = "left";
 
       canvas.toBlob((blob) => {
@@ -552,32 +553,6 @@
         document.getElementById("modalPreviewImg").src = URL.createObjectURL(blob);
         document.getElementById("modalOverlay").style.display = "flex";
       }, "image/png");
-    }
-
-    function drawRoundedRect(ctx, x, y, width, height, radius, fill) {
-      ctx.beginPath();
-      ctx.moveTo(x + radius, y);
-      ctx.lineTo(x + width - radius, y);
-      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
-      ctx.lineTo(x + width, y + height - radius);
-      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
-      ctx.lineTo(x + radius, y + height);
-      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
-      ctx.lineTo(x, y + radius);
-      ctx.quadraticCurveTo(x, y, x + radius, y);
-      ctx.closePath();
-      if (fill) { ctx.fillStyle = fill; ctx.fill(); }
-    }
-
-    function roundedClip(ctx, x, y, w, h, r) {
-      ctx.beginPath();
-      ctx.moveTo(x + r, y);
-      ctx.arcTo(x + w, y, x + w, y + h, r);
-      ctx.arcTo(x + w, y + h, x, y + h, r);
-      ctx.arcTo(x, y + h, x, y, r);
-      ctx.arcTo(x, y, x + w, y, r);
-      ctx.closePath();
-      ctx.clip();
     }
 
     function loadImage(src) {
@@ -603,7 +578,7 @@
       if (!lastGeneratedBlob) return;
       const a = document.createElement("a");
       a.href = URL.createObjectURL(lastGeneratedBlob);
-      a.download = "mascot-impression.png";
+      a.download = "GMMTV-Mascot-Impression.png";
       a.click();
     }
 
@@ -611,7 +586,6 @@
       document.getElementById("modalOverlay").style.display = "none";
     }
 
-    // 啟動渲染
     renderPool();
     renderList();
   </script>
