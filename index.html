@@ -1,851 +1,647 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>吉祥物印象大對決 - 初印象 vs 現印象</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>吉祥物印象挑戰</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
-    
+    :root {
+      --bg: #F4F3EF;
+      --card-bg: #FFFFFF;
+      --accent: #FF5A36;
+      --accent-soft: #FFEFEA;
+      --text-main: #1D1D1F;
+      --text-sub: #86868B;
+      --input-bg: #F6F5F2;
+      --radius-sm: 14px;
+      --radius-md: 22px;
+      --radius-lg: 32px;
+    }
+
     * {
-      font-family: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* 經典黑白對比表格邊框 */
-    .table-classic {
-      border: 3.5px solid #000;
-      border-collapse: collapse;
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 24px 16px 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .badge-pill {
+      align-self: flex-start;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 99px;
+      letter-spacing: 0.5px;
+    }
+
+    .header-card h1 {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .header-card p {
+      font-size: 13px;
+      color: var(--text-sub);
+      line-height: 1.5;
+    }
+
+    .config-box {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .input-clean {
+      border: none;
+      background: var(--input-bg);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      outline: none;
+      width: 100%;
+      transition: background 0.2s;
+    }
+
+    .input-clean:focus {
+      background: #EFECE6;
+    }
+
+    .pool-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .pool-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-sub);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .chips-flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--input-bg);
+      border-radius: 99px;
+      padding: 6px 14px 6px 6px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      color: var(--text-main);
+      transition: all 0.15s;
+    }
+
+    .chip-item:hover {
+      background: #EAE6DD;
+    }
+
+    .chip-item img {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .impression-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .avatar-wrapper {
+      width: 76px;
+      height: 76px;
+      min-width: 76px;
+      background: var(--input-bg);
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-hover {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .avatar-wrapper:hover .avatar-hover {
+      opacity: 1;
+    }
+
+    .card-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .name-input {
+      font-size: 16px;
+      font-weight: 800;
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--text-main);
+      width: 80%;
+    }
+
+    .btn-delete {
+      background: none;
+      border: none;
+      font-size: 18px;
+      color: #C7C7CC;
+      cursor: pointer;
+      padding: 2px 6px;
+      transition: color 0.15s;
+    }
+
+    .btn-delete:hover {
+      color: var(--accent);
+    }
+
+    .impression-input {
+      width: 100%;
+      background: var(--input-bg);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      outline: none;
+      transition: background 0.2s;
+    }
+
+    .impression-input:focus {
+      background: #EFECE6;
+    }
+
+    .button-deck {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border: none;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    .action-btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary {
+      background: var(--card-bg);
+      color: var(--text-main);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
       background: #fff;
-    }
-    .table-classic th, .table-classic td {
-      border: 3.5px solid #000;
+      border-radius: var(--radius-lg);
+      max-width: 420px;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 90vh;
+      overflow-y: auto;
     }
 
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-    /* 彈窗動畫 */
-    .fade-enter {
-      animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .modal-preview {
+      width: 100%;
+      border-radius: 20px;
+      max-height: 60vh;
+      object-fit: contain;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.96); }
-      to { opacity: 1; transform: scale(1); }
+
+    .modal-tip {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+    }
+
+    canvas {
+      display: none;
     }
   </style>
 </head>
-<body class="bg-[#F8F9FA] text-neutral-900 min-h-screen flex flex-col">
+<body>
 
-  <header class="bg-black text-white px-4 py-3 sticky top-0 z-40 shadow-sm border-b border-neutral-800">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2.5">
-        <div class="w-8 h-8 rounded-lg bg-yellow-400 text-black flex items-center justify-center font-black text-base shadow-sm">
-          評
-        </div>
-        <div>
-          <h1 class="text-sm sm:text-base font-black tracking-wide leading-none">吉祥物印象挑戰</h1>
-          <p class="text-[11px] text-neutral-400 mt-1">選吉祥物・點選神評・一鍵發布社群</p>
-        </div>
-      </div>
-      <div class="flex items-center gap-2">
-        <button id="btn-header-share" class="bg-yellow-400 hover:bg-yellow-300 text-black px-3.5 py-1.5 rounded-full text-xs font-black flex items-center gap-1.5 transition active:scale-95 shadow">
-          <i data-lucide="share-2" class="w-3.5 h-3.5"></i>
-          <span>一鍵發圖</span>
-        </button>
-      </div>
+  <div class="app-shell">
+    <header class="header-card">
+      <div class="badge-pill">Mascot Impression</div>
+      <h1>吉祥物第一印象</h1>
+      <p>點選下方候選角色或自行換圖，寫下一句你對牠們的真實印象！</p>
+    </header>
+
+    <div class="config-box">
+      <input type="text" id="eventTitle" class="input-clean" value="吉祥物印象表" placeholder="輸入活動標題" />
+      <input type="text" id="userSignature" class="input-clean" value="@你的暱稱" placeholder="你的署名" style="max-width: 130px;" />
     </div>
-  </header>
 
-  <main class="max-w-6xl mx-auto w-full flex-1 p-3 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-    
-    <!-- 左側編輯區 (手機置頂) -->
-    <section class="lg:col-span-7 flex flex-col gap-4">
-      
-      <!-- 吉祥物候選展示庫 (Pool) -->
-      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-neutral-200">
-        <div class="flex items-center justify-between mb-2.5">
-          <div class="flex items-center gap-1.5">
-            <i data-lucide="sparkles" class="w-4 h-4 text-amber-500"></i>
-            <h2 class="text-sm font-black text-neutral-800">步驟 1：點擊選擇想評價的吉祥物</h2>
-          </div>
-          <span class="text-[11px] text-neutral-400">點擊頭像即可加入/取消</span>
-        </div>
-        
-        <!-- 角色選擇橫向/網格卡片 -->
-        <div id="pool-container" class="grid grid-cols-4 sm:grid-cols-5 gap-2.5 pt-1">
-          <!-- 動態注入展示庫 -->
-        </div>
-
-        <div class="mt-3 pt-3 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-500">
-          <span>沒有想評的角色？</span>
-          <label class="cursor-pointer font-bold text-black hover:text-amber-600 flex items-center gap-1 transition">
-            <i data-lucide="upload" class="w-3.5 h-3.5"></i> 上傳自己的圖片
-            <input type="file" id="custom-pool-upload" accept="image/*" class="hidden">
-          </label>
-        </div>
+    <div class="pool-card">
+      <div class="pool-title">
+        <span>快速加入吉祥物（測試候選池）</span>
+        <span style="font-size: 11px; color: var(--text-sub);">點擊即加入</span>
       </div>
+      <div class="chips-flow" id="mascotPool"></div>
+    </div>
 
-      <!-- 快速短評詞庫 (Fast Tags) -->
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-neutral-200">
-        <div class="flex items-center justify-between mb-2">
-          <div class="flex items-center gap-1.5">
-            <i data-lucide="zap" class="w-4 h-4 text-yellow-500"></i>
-            <h2 class="text-xs sm:text-sm font-black text-neutral-800">懶人短評庫（點擊直接填入目前聚焦框）</h2>
-          </div>
-          <span id="active-target-hint" class="text-[11px] text-amber-600 font-bold bg-amber-50 px-2 py-0.5 rounded-full">未選定輸入框</span>
-        </div>
-        
-        <div class="flex flex-wrap gap-1.5 pt-1" id="quick-tags-container">
-          <!-- 標籤按鈕 -->
-        </div>
-      </div>
+    <div class="list-container" id="itemList"></div>
 
-      <!-- 目前已選擇的列表內容設定 -->
-      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-neutral-200 flex flex-col gap-3">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-1.5">
-            <i data-lucide="list-edit" class="w-4 h-4 text-neutral-700"></i>
-            <h2 class="text-sm font-black text-neutral-800">步驟 2：填寫或修改印象文案</h2>
-          </div>
-          <div class="flex items-center gap-2">
-            <button id="btn-clear-all" class="text-xs text-neutral-400 hover:text-red-500 font-medium transition">
-              清空
-            </button>
-            <button id="btn-random-demo" class="text-xs bg-neutral-100 hover:bg-neutral-200 text-neutral-700 px-2.5 py-1 rounded-md font-bold transition flex items-center gap-1">
-              <i data-lucide="shuffle" class="w-3 h-3"></i> 載入範例
-            </button>
-          </div>
-        </div>
+    <div class="button-deck">
+      <button class="action-btn btn-secondary" onclick="addNewItem()">＋ 新增一欄</button>
+      <button class="action-btn btn-primary" onclick="renderBorderlessCanvas()">✨ 生成分享圖</button>
+    </div>
+  </div>
 
-        <!-- 角色列表項目 -->
-        <div id="selected-list" class="flex flex-col gap-3">
-          <!-- 動態注入填寫卡片 -->
-        </div>
-      </div>
-
-      <!-- 活動活動標籤 / 社群標籤設定 -->
-      <div class="bg-white rounded-2xl p-4 shadow-sm border border-neutral-200 grid grid-cols-2 gap-3 text-xs">
-        <div>
-          <label class="block font-bold text-neutral-600 mb-1">欄位一標題</label>
-          <input type="text" id="cfg-col1" value="初印象" class="w-full px-3 py-1.5 border rounded-lg font-bold focus:outline-black text-neutral-800">
-        </div>
-        <div>
-          <label class="block font-bold text-neutral-600 mb-1">欄位二標題</label>
-          <input type="text" id="cfg-col2" value="現印象" class="w-full px-3 py-1.5 border rounded-lg font-bold focus:outline-black text-neutral-800">
-        </div>
-        <div class="col-span-2">
-          <label class="block font-bold text-neutral-600 mb-1">活動 Hashtag / 粉絲署名（將印在分享圖右下方）</label>
-          <input type="text" id="cfg-hashtag" value="#吉祥物印象挑戰 @官方活動" class="w-full px-3 py-1.5 border rounded-lg focus:outline-black text-neutral-800 font-medium">
-        </div>
-      </div>
-    </section>
-
-    <!-- 右側：即時預覽與發布面板 -->
-    <section class="lg:col-span-5 sticky top-20 flex flex-col items-center gap-3">
-      <div class="w-full bg-white rounded-2xl p-4 sm:p-5 shadow-sm border border-neutral-200">
-        <div class="flex items-center justify-between mb-3 border-b pb-2">
-          <div class="flex items-center gap-1.5">
-            <i data-lucide="eye" class="w-4 h-4 text-neutral-500"></i>
-            <h2 class="text-sm font-black text-neutral-800">即時效果預覽</h2>
-          </div>
-          <span class="text-[11px] bg-black text-white px-2 py-0.5 rounded font-mono font-bold">1080P 高畫質規格</span>
-        </div>
-
-        <!-- 預覽容器 -->
-        <div class="w-full overflow-x-auto flex justify-center py-2 bg-neutral-100 rounded-xl p-2 border border-neutral-200/80">
-          <div id="preview-board" class="w-full max-w-[380px] bg-white transition-all select-none">
-            <!-- 經典黑白對比表格 -->
-            <table class="table-classic w-full text-center table-fixed">
-              <thead>
-                <tr class="bg-black text-white h-12">
-                  <th class="w-1/3 py-2 px-1 font-black text-base border-r-[3.5px] border-black">
-                    <span class="text-xs text-neutral-400">對象</span>
-                  </th>
-                  <th id="pv-title-col1" class="w-1/3 py-2 px-1 font-black text-base border-r-[3.5px] border-black">
-                    初印象
-                  </th>
-                  <th id="pv-title-col2" class="w-1/3 py-2 px-1 font-black text-base">
-                    現印象
-                  </th>
-                </tr>
-              </thead>
-              <tbody id="pv-table-body">
-                <!-- 預覽內容 -->
-              </tbody>
-            </table>
-            <!-- 底部 Hashtag 浮水印 -->
-            <div id="pv-hashtag-text" class="text-right text-[11px] text-neutral-400 mt-2 px-1 font-mono">
-              #吉祥物印象挑戰
-            </div>
-          </div>
-        </div>
-
-        <!-- 核心行動群組（促發分享） -->
-        <div class="mt-4 pt-3 border-t flex flex-col gap-2">
-          <!-- 主分享按鈕 (支援 Web Share API) -->
-          <button id="btn-native-share" class="w-full py-3.5 bg-yellow-400 hover:bg-yellow-300 active:scale-[0.98] text-black font-black text-base rounded-xl flex items-center justify-center gap-2 transition shadow-md">
-            <i data-lucide="share-2" class="w-5 h-5"></i>
-            <span>立即分享至社群 (IG / Threads / LINE)</span>
-          </button>
-
-          <div class="grid grid-cols-2 gap-2">
-            <button id="btn-copy-img" class="py-2.5 bg-neutral-100 hover:bg-neutral-200 active:scale-95 text-neutral-800 text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 transition">
-              <i data-lucide="copy" class="w-4 h-4"></i>
-              <span>複製圖片到剪貼簿</span>
-            </button>
-            <button id="btn-download-img" class="py-2.5 bg-black hover:bg-neutral-800 active:scale-95 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-1.5 transition shadow">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              <span>直接下載圖片</span>
-            </button>
-          </div>
-
-          <p class="text-center text-[11px] text-neutral-400 mt-0.5">
-            手機若跳出預覽，可直接「長按圖片」加入相簿
-          </p>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- 完成後彈出視窗（支援行動端長按存圖與多種分享方式） -->
-  <div id="share-modal" class="fixed inset-0 bg-black/85 z-50 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-white rounded-3xl max-w-md w-full p-4 sm:p-5 shadow-2xl relative my-auto flex flex-col max-h-[92vh] fade-enter">
-      <!-- 關閉按鈕 -->
-      <button id="btn-close-modal" class="absolute top-3.5 right-3.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-600 rounded-full w-8 h-8 flex items-center justify-center transition">
-        <i data-lucide="x" class="w-5 h-5"></i>
-      </button>
-
-      <div class="text-center mb-3 pr-6 pl-6">
-        <span class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full mb-1">
-          <i data-lucide="check-circle" class="w-3 h-3"></i> 圖檔已就緒
-        </span>
-        <h3 class="text-base sm:text-lg font-black text-neutral-900">隨時分享給好友！</h3>
-        <p class="text-xs text-neutral-500">手機請直接 <strong class="text-neutral-900 underline">長按圖片</strong> 儲存到照片庫</p>
-      </div>
-
-      <!-- 圖片長按展示區 -->
-      <div class="flex-1 overflow-y-auto flex items-center justify-center bg-neutral-50 rounded-2xl p-2 border border-neutral-200 min-h-[260px]">
-        <img id="modal-img-result" alt="分享圖" class="max-w-full max-h-[55vh] object-contain shadow rounded select-all">
-      </div>
-
-      <!-- 分享管道按鈕 -->
-      <div class="mt-4 flex flex-col gap-2">
-        <button id="modal-btn-native-share" class="w-full py-3 bg-yellow-400 hover:bg-yellow-300 text-black font-black text-sm rounded-xl flex items-center justify-center gap-2 transition active:scale-98 shadow">
-          <i data-lucide="send" class="w-4 h-4"></i>
-          <span>叫出手機原生分享 (直接發限動/聊天)</span>
-        </button>
-        <div class="flex gap-2">
-          <button id="modal-btn-download" class="flex-1 py-2.5 bg-black text-white hover:bg-neutral-800 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition">
-            <i data-lucide="download" class="w-4 h-4"></i> 下載圖檔
-          </button>
-          <button id="modal-btn-copy" class="flex-1 py-2.5 bg-neutral-100 text-neutral-800 hover:bg-neutral-200 rounded-xl font-bold text-xs flex items-center justify-center gap-1.5 transition">
-            <i data-lucide="copy" class="w-4 h-4"></i> 複製到剪貼簿
-          </button>
-        </div>
+  <div class="modal" id="modalOverlay">
+    <div class="modal-card">
+      <img id="modalPreviewImg" class="modal-preview" alt="分享圖" />
+      <div class="modal-tip">💡 手機用戶直接「長按圖片」加入相簿即可！</div>
+      <div class="button-deck">
+        <button class="action-btn btn-secondary" onclick="closeModal()">關閉</button>
+        <button class="action-btn btn-primary" onclick="downloadImage()">下載圖片</button>
       </div>
     </div>
   </div>
 
-  <!-- 浮動提示 Toast -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-black/90 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg pointer-events-none transition-all opacity-0 translate-y-3 z-50 flex items-center gap-2">
-    <i data-lucide="info" class="w-4 h-4 text-yellow-400"></i>
-    <span id="toast-text">訊息提示</span>
-  </div>
-
-  <!-- 用於繪製的隱藏 High-DPI Canvas -->
-  <canvas id="render-canvas" class="hidden"></canvas>
+  <canvas id="exportCanvas"></canvas>
 
   <script>
-    // 預設吉祥物候選庫 (供粉絲快速點擊選入)
-    const MASCOT_POOL = [
-      {
-        id: "p_1",
-        name: "薯條君",
-        img: "https://images.unsplash.com/photo-1576107232684-1279f3908594?w=240&auto=format&fit=crop&q=80",
-        defaultFirst: "蘸番茄醬很美味",
-        defaultCur: "剛剛出爐自帶鹽粒根本不需要蘸醬！"
-      },
-      {
-        id: "p_2",
-        name: "酸黃瓜仔",
-        img: "https://images.unsplash.com/photo-1590759668628-05b0fc34bb70?w=240&auto=format&fit=crop&q=80",
-        defaultFirst: "小時候完全不懂",
-        defaultCur: "長大後完全離不開！求加倍"
-      },
-      {
-        id: "p_3",
-        name: "香甜派",
-        img: "https://images.unsplash.com/photo-1621236378699-8597fee6a1ce?w=240&auto=format&fit=crop&q=80",
-        defaultFirst: "隨心配選哪個都行",
-        defaultCur: "給菠蘿派全宇宙！燙到也甘願"
-      },
-      {
-        id: "p_4",
-        name: "鱈魚堡",
-        img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=240&auto=format&fit=crop&q=80",
-        defaultFirst: "不咋愛吃魚肉",
-        defaultCur: "那個蒸麵包軟皮真的無敵了！"
-      },
-      {
-        id: "p_5",
-        name: "早晨蛋堡",
-        img: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=240&auto=format&fit=crop&q=80",
-        defaultFirst: "早起是不可能的",
-        defaultCur: "是早八的鬧鐘，是耀眼的太陽"
-      },
-      {
-        id: "p_6",
-        name: "小萌獸",
-        img: "https://api.dicebear.com/7.x/bottts-neutral/svg?seed=monster_cute",
-        defaultFirst: "看起來很兇猛",
-        defaultCur: "其實是黏人撒嬌精"
-      },
-      {
-        id: "p_7",
-        name: "魔法星",
-        img: "https://api.dicebear.com/7.x/bottts-neutral/svg?seed=starlight",
-        defaultFirst: "背景吉祥物路人",
-        defaultCur: "官方親兒子！周邊全搶光"
-      },
-      {
-        id: "p_8",
-        name: "神秘黑貓",
-        img: "https://api.dicebear.com/7.x/bottts-neutral/svg?seed=shadow_cat",
-        defaultFirst: "高冷反派大魔王",
-        defaultCur: "本命推！每天都要吸爆"
-      }
-    ];
-
-    // 粉絲快速點選短評詞庫 (包含「初印象」與「現印象」通用靈感)
-    const QUICK_TAGS = [
-      { type: "first", text: "以為是高冷反派" },
-      { type: "cur", text: "結果是軟萌吃貨！" },
-      { type: "first", text: "剛入坑時無感" },
-      { type: "cur", text: "現在每天吸爆！" },
-      { type: "cur", text: "我的本命推！" },
-      { type: "cur", text: "官方親兒子待遇" },
-      { type: "first", text: "看起來不太聰明" },
-      { type: "cur", text: "其實智商超群" },
-      { type: "cur", text: "錢包全被牠掏空了" },
-      { type: "first", text: "路過瞄一眼" },
-      { type: "cur", text: "精神支柱不可或缺" }
-    ];
-
-    // 狀態變數
-    let selectedMascots = [
-      JSON.parse(JSON.stringify(MASCOT_POOL[0])),
-      JSON.parse(JSON.stringify(MASCOT_POOL[1])),
-      JSON.parse(JSON.stringify(MASCOT_POOL[2])),
-      JSON.parse(JSON.stringify(MASCOT_POOL[3])),
-      JSON.parse(JSON.stringify(MASCOT_POOL[4]))
-    ];
-
-    let currentFocusedInput = null; // 紀錄目前游標所在的輸入框，方便標籤快速填入
-    let latestGeneratedBlob = null;
-    let latestGeneratedDataUrl = null;
-
-    // DOM 元素快取
-    const poolContainer = document.getElementById('pool-container');
-    const quickTagsContainer = document.getElementById('quick-tags-container');
-    const selectedList = document.getElementById('selected-list');
-    const activeTargetHint = document.getElementById('active-target-hint');
-    const cfgCol1 = document.getElementById('cfg-col1');
-    const cfgCol2 = document.getElementById('cfg-col2');
-    const cfgHashtag = document.getElementById('cfg-hashtag');
-    const pvTitleCol1 = document.getElementById('pv-title-col1');
-    const pvTitleCol2 = document.getElementById('pv-title-col2');
-    const pvTableBody = document.getElementById('pv-table-body');
-    const pvHashtagText = document.getElementById('pv-hashtag-text');
-    const toastEl = document.getElementById('toast');
-    const toastTextEl = document.getElementById('toast-text');
-    const shareModal = document.getElementById('share-modal');
-    const modalImgResult = document.getElementById('modal-img-result');
-
-    function showToast(msg) {
-      toastTextEl.textContent = msg;
-      toastEl.classList.remove('opacity-0', 'translate-y-3');
-      toastEl.classList.add('opacity-100', 'translate-y-0');
-      setTimeout(() => {
-        toastEl.classList.remove('opacity-100', 'translate-y-0');
-        toastEl.classList.add('opacity-0', 'translate-y-3');
-      }, 2400);
+    // 輔助產生彩色 SVG 測試頭像（保證不破圖）
+    function makeAvatar(emoji, bg) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160">
+        <rect width="160" height="160" rx="36" fill="${bg}"/>
+        <text x="80" y="98" font-size="70" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto">${emoji}</text>
+      </svg>`;
+      return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
     }
 
-    function renderMascotPool() {
-      poolContainer.innerHTML = '';
-      MASCOT_POOL.forEach(item => {
-        const isSelected = selectedMascots.some(m => m.id === item.id);
-        const card = document.createElement('button');
-        card.className = `flex flex-col items-center p-2 rounded-xl border text-center transition relative ${
-          isSelected 
-            ? 'border-black bg-neutral-900 text-white shadow-sm ring-2 ring-black/10' 
-            : 'border-neutral-200 bg-white hover:bg-neutral-50 text-neutral-800'
-        }`;
+    // 6 組預設測試候選吉祥物（晚點您有真實圖片時，只需替換成您的檔名如 'bear.png'）
+    const DEFAULT_MASCOTS = [
+      { name: "小熊波波", img: makeAvatar("🐻", "#FFE8D6") },
+      { name: "兔兔米娜", img: makeAvatar("🐰", "#FFDEE9") },
+      { name: "貓咪大福", img: makeAvatar("🐱", "#FFF3B0") },
+      { name: "小恐龍雷克斯", img: makeAvatar("🦖", "#D8F3DC") },
+      { name: "企鵝波比", img: makeAvatar("🐧", "#E0F2FE") },
+      { name: "小狐狸皮皮", img: makeAvatar("🦊", "#FEE2E2") }
+    ];
 
-        card.innerHTML = `
-          <div class="w-12 h-12 rounded-lg bg-white p-1 flex items-center justify-center overflow-hidden mb-1.5 border border-neutral-100">
-            <img src="${item.img}" alt="${item.name}" class="w-full h-full object-contain">
-          </div>
-          <span class="text-[11px] font-bold truncate w-full">${item.name}</span>
-          ${isSelected ? `
-            <span class="absolute -top-1.5 -right-1.5 bg-yellow-400 text-black rounded-full w-4 h-4 text-[10px] flex items-center justify-center font-black">✓</span>
-          ` : ''}
-        `;
+    // 預設填入 3 個示範項目
+    let currentItems = [
+      { name: "小熊波波", img: DEFAULT_MASCOTS[0].img, impression: "看起來憨憨的，但感覺很有安全感！" },
+      { name: "兔兔米娜", img: DEFAULT_MASCOTS[1].img, impression: "軟萌外表，眼神裡卻透露出一絲聰明。" },
+      { name: "小恐龍雷克斯", img: DEFAULT_MASCOTS[3].img, impression: "雖然手短短的，但笑起來超級治癒。" }
+    ];
 
-        card.onclick = () => toggleSelectMascot(item);
-        poolContainer.appendChild(card);
-      });
-    }
+    let lastGeneratedBlob = null;
 
-    function toggleSelectMascot(item) {
-      const idx = selectedMascots.findIndex(m => m.id === item.id);
-      if (idx > -1) {
-        if (selectedMascots.length <= 1) {
-          showToast("至少需保留 1 個吉祥物喔！");
-          return;
-        }
-        selectedMascots.splice(idx, 1);
-      } else {
-        selectedMascots.push({
-          id: item.id,
-          name: item.name,
-          img: item.img,
-          defaultFirst: item.defaultFirst || "一開始的感覺",
-          defaultCur: item.defaultCur || "現在的感覺"
-        });
-      }
-      renderMascotPool();
-      renderSelectedList();
-      updatePreviewTable();
-    }
-
-    // 支援粉絲自訂上傳到候選池
-    document.getElementById('custom-pool-upload').addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const customItem = {
-          id: "custom_" + Date.now(),
-          name: file.name.split('.')[0].substring(0, 6) || "自選角色",
-          img: event.target.result,
-          defaultFirst: "初次遇見",
-          defaultCur: "現在非常喜歡"
-        };
-        MASCOT_POOL.unshift(customItem);
-        selectedMascots.push(customItem);
-        renderMascotPool();
-        renderSelectedList();
-        updatePreviewTable();
-        showToast("已成功新增自訂吉祥物！");
-      };
-      reader.readAsDataURL(file);
-    });
-
-    function renderQuickTags() {
-      quickTagsContainer.innerHTML = '';
-      QUICK_TAGS.forEach(tag => {
-        const btn = document.createElement('button');
-        btn.className = "text-[11px] bg-neutral-100 hover:bg-neutral-200 active:scale-95 text-neutral-800 px-2.5 py-1 rounded-full font-medium transition border border-neutral-200/60";
-        btn.textContent = `+ ${tag.text}`;
-        
+    function initPool() {
+      const pool = document.getElementById("mascotPool");
+      pool.innerHTML = "";
+      DEFAULT_MASCOTS.forEach((m) => {
+        const btn = document.createElement("button");
+        btn.className = "chip-item";
+        btn.innerHTML = `<img src="${m.img}" alt="${m.name}" /><span>${m.name}</span>`;
         btn.onclick = () => {
-          if (!currentFocusedInput) {
-            showToast("請先點擊下方你想填寫的「初印象」或「現印象」框！");
-            return;
-          }
-          currentFocusedInput.value = tag.text;
-          currentFocusedInput.dispatchEvent(new Event('input'));
-          showToast(`已填入：「${tag.text}」`);
+          currentItems.push({ name: m.name, img: m.img, impression: "" });
+          renderList();
         };
-
-        quickTagsContainer.appendChild(btn);
+        pool.appendChild(btn);
       });
     }
 
-    function renderSelectedList() {
-      selectedList.innerHTML = '';
+    function renderList() {
+      const listEl = document.getElementById("itemList");
+      listEl.innerHTML = "";
 
-      selectedMascots.forEach((item, index) => {
-        const card = document.createElement('div');
-        card.className = "p-3 rounded-xl border border-neutral-200 bg-neutral-50/60 flex flex-col gap-2 relative transition hover:border-neutral-300";
-
+      currentItems.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.className = "impression-card";
         card.innerHTML = `
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="w-5 h-5 rounded-full bg-black text-white text-[11px] flex items-center justify-center font-bold">${index + 1}</span>
-              <span class="text-xs font-black text-neutral-800">${item.name}</span>
-            </div>
-            <button class="btn-del text-neutral-400 hover:text-red-500 p-1 text-xs" data-id="${item.id}" title="移除">
-              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-            </button>
+          <div class="avatar-wrapper" onclick="triggerUpload(${index})">
+            <img src="${item.img}" id="img-${index}" />
+            <div class="avatar-hover">換圖</div>
+            <input type="file" id="file-${index}" accept="image/*" style="display:none;" onchange="handleFile(event, ${index})" />
           </div>
-
-          <div class="grid grid-cols-12 gap-2 items-center">
-            <div class="col-span-3 flex justify-center">
-              <div class="w-14 h-14 rounded-lg bg-white border border-neutral-200 p-1 flex items-center justify-center overflow-hidden">
-                <img src="${item.img}" alt="${item.name}" class="w-full h-full object-contain">
-              </div>
+          <div class="card-body">
+            <div class="card-top">
+              <input type="text" class="name-input" value="${item.name}" oninput="currentItems[${index}].name = this.value" placeholder="角色名稱" />
+              <button class="btn-delete" onclick="removeItem(${index})">✕</button>
             </div>
-
-            <div class="col-span-9 grid grid-cols-2 gap-2">
-              <div>
-                <label class="block text-[10px] font-bold text-neutral-400 mb-0.5">初印象</label>
-                <textarea rows="2" data-type="first" data-id="${item.id}" class="edit-input w-full text-xs p-1.5 border rounded-lg focus:outline-black bg-white resize-none font-medium text-neutral-800" placeholder="點擊或點短評填寫">${item.defaultFirst || ''}</textarea>
-              </div>
-              <div>
-                <label class="block text-[10px] font-bold text-neutral-400 mb-0.5">現印象</label>
-                <textarea rows="2" data-type="cur" data-id="${item.id}" class="edit-input w-full text-xs p-1.5 border rounded-lg focus:outline-black bg-white resize-none font-medium text-neutral-800" placeholder="點擊或點短評填寫">${item.defaultCur || ''}</textarea>
-              </div>
-            </div>
+            <input type="text" class="impression-input" value="${item.impression}" oninput="currentItems[${index}].impression = this.value" placeholder="輸入一句話印象..." />
           </div>
         `;
-
-        selectedList.appendChild(card);
-      });
-
-      lucide.createIcons();
-
-      // 綁定輸入聚焦與變更事件
-      document.querySelectorAll('.edit-input').forEach(input => {
-        input.addEventListener('focus', (e) => {
-          currentFocusedInput = e.target;
-          const labelType = e.target.getAttribute('data-type') === 'first' ? '【初印象】' : '【現印象】';
-          activeTargetHint.textContent = `填寫中：第 ${Array.from(document.querySelectorAll('.edit-input')).indexOf(e.target) % selectedMascots.length + 1} 列 ${labelType}`;
-        });
-
-        input.addEventListener('input', (e) => {
-          const id = e.target.getAttribute('data-id');
-          const type = e.target.getAttribute('data-type');
-          const target = selectedMascots.find(m => m.id === id);
-          if (target) {
-            if (type === 'first') target.defaultFirst = e.target.value;
-            if (type === 'cur') target.defaultCur = e.target.value;
-            updatePreviewTable();
-          }
-        });
-      });
-
-      // 移除單一吉祥物
-      document.querySelectorAll('.btn-del').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          if (selectedMascots.length <= 1) {
-            showToast("至少需保留 1 個吉祥物！");
-            return;
-          }
-          const id = btn.getAttribute('data-id');
-          selectedMascots = selectedMascots.filter(m => m.id !== id);
-          renderMascotPool();
-          renderSelectedList();
-          updatePreviewTable();
-        });
+        listEl.appendChild(card);
       });
     }
 
-    function updatePreviewTable() {
-      pvTitleCol1.textContent = cfgCol1.value.trim() || '初印象';
-      pvTitleCol2.textContent = cfgCol2.value.trim() || '現印象';
-      pvHashtagText.textContent = cfgHashtag.value.trim();
+    function triggerUpload(index) {
+      document.getElementById(`file-${index}`).click();
+    }
 
-      pvTableBody.innerHTML = '';
-      selectedMascots.forEach(item => {
-        const tr = document.createElement('tr');
-        tr.className = "h-20 sm:h-24";
-
-        const textFormat = (txt) => {
-          if (!txt) return '<span class="text-neutral-300">（空白）</span>';
-          return txt.replace(/\n/g, '<br/>');
+    function handleFile(event, index) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          currentItems[index].img = e.target.result;
+          renderList();
         };
-
-        tr.innerHTML = `
-          <td class="w-1/3 p-2 border-r-[3.5px] border-black align-middle text-center bg-white">
-            <img src="${item.img}" alt="${item.name}" class="max-h-16 max-w-full object-contain mx-auto">
-          </td>
-          <td class="w-1/3 p-2 border-r-[3.5px] border-black align-middle text-center font-bold text-xs sm:text-sm text-black break-words leading-tight">
-            ${textFormat(item.defaultFirst)}
-          </td>
-          <td class="w-1/3 p-2 align-middle text-center font-bold text-xs sm:text-sm text-black break-words leading-tight">
-            ${textFormat(item.defaultCur)}
-          </td>
-        `;
-        pvTableBody.appendChild(tr);
-      });
+        reader.readAsDataURL(file);
+      }
     }
 
-    cfgCol1.addEventListener('input', updatePreviewTable);
-    cfgCol2.addEventListener('input', updatePreviewTable);
-    cfgHashtag.addEventListener('input', updatePreviewTable);
-
-    // 清空與隨機重置
-    document.getElementById('btn-clear-all').addEventListener('click', () => {
-      selectedMascots.forEach(m => {
-        m.defaultFirst = '';
-        m.defaultCur = '';
+    function addNewItem() {
+      currentItems.push({
+        name: `新角色 ${currentItems.length + 1}`,
+        img: makeAvatar("✨", "#E5E7EB"),
+        impression: ""
       });
-      renderSelectedList();
-      updatePreviewTable();
-      showToast("已清空所有評語");
-    });
+      renderList();
+    }
 
-    document.getElementById('btn-random-demo').addEventListener('click', () => {
-      selectedMascots = [
-        JSON.parse(JSON.stringify(MASCOT_POOL[0])),
-        JSON.parse(JSON.stringify(MASCOT_POOL[1])),
-        JSON.parse(JSON.stringify(MASCOT_POOL[2])),
-        JSON.parse(JSON.stringify(MASCOT_POOL[3]))
-      ];
-      renderMascotPool();
-      renderSelectedList();
-      updatePreviewTable();
-      showToast("已載入示範資料");
-    });
+    function removeItem(index) {
+      if (currentItems.length <= 1) return;
+      currentItems.splice(index, 1);
+      renderList();
+    }
 
-    async function renderHighResCanvas() {
-      const canvas = document.getElementById('render-canvas');
-      const ctx = canvas.getContext('2d');
+    async function renderBorderlessCanvas() {
+      const canvas = document.getElementById("exportCanvas");
+      const ctx = canvas.getContext("2d");
 
-      const canvasWidth = 1080;
-      const colW1 = 360;
-      const colW2 = 360;
-      const colW3 = 360;
+      const width = 1080;
+      const cardHeight = 160;
+      const headerH = 260;
+      const footerH = 110;
+      const margin = 50;
+      const gap = 20;
 
-      const headerHeight = 140;
-      const rowHeight = 260;
-      const borderWidth = 6;
-      const footerHeight = cfgHashtag.value.trim() ? 70 : 30;
-      const totalRows = selectedMascots.length;
-      const canvasHeight = headerHeight + (totalRows * rowHeight) + footerHeight;
+      const totalH = headerH + (currentItems.length * (cardHeight + gap)) + footerH;
+      canvas.width = width;
+      canvas.height = totalH;
 
-      canvas.width = canvasWidth;
-      canvas.height = canvasHeight;
+      ctx.fillStyle = "#F4F3EF";
+      ctx.fillRect(0, 0, width, totalH);
 
-      // 1. 底色純白
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+      const boxW = width - (margin * 2);
 
-      // 2. 表頭繪製
-      ctx.fillStyle = '#000000';
-      ctx.fillRect(0, 0, canvasWidth, headerHeight);
+      drawRoundedRect(ctx, margin, 50, boxW, 170, 36, "#FFFFFF");
 
-      ctx.fillStyle = '#FFFFFF';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.font = '900 48px "Noto Sans TC", sans-serif';
+      drawRoundedRect(ctx, margin + 40, 80, 160, 36, 18, "#FFEFEA");
+      ctx.fillStyle = "#FF5A36";
+      ctx.font = "800 16px 'Plus Jakarta Sans', sans-serif";
+      ctx.fillText("MASCOT VIBES", margin + 62, 104);
 
-      ctx.fillText(cfgCol1.value.trim() || '初印象', colW1 + colW2 / 2, headerHeight / 2);
-      ctx.fillText(cfgCol2.value.trim() || '現印象', colW1 + colW2 + colW3 / 2, headerHeight / 2);
+      const title = document.getElementById("eventTitle").value || "吉祥物印象挑戰";
+      ctx.fillStyle = "#1D1D1F";
+      ctx.font = "900 46px 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif";
+      ctx.fillText(title, margin + 40, 172);
 
-      // 3. 表頭垂直白分隔線
-      ctx.strokeStyle = '#FFFFFF';
-      ctx.lineWidth = borderWidth;
+      const sig = document.getElementById("userSignature").value || "@匿名粉絲";
+      ctx.fillStyle = "#86868B";
+      ctx.font = "700 24px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = "right";
+      ctx.fillText(sig, margin + boxW - 40, 172);
+      ctx.textAlign = "left";
+
+      let startY = headerH;
+
+      for (let i = 0; i < currentItems.length; i++) {
+        const item = currentItems[i];
+        const cardY = startY + (i * (cardHeight + gap));
+
+        drawRoundedRect(ctx, margin, cardY, boxW, cardHeight, 28, "#FFFFFF");
+
+        const avatarSize = 120;
+        const avatarX = margin + 20;
+        const avatarY = cardY + 20;
+
+        drawRoundedRect(ctx, avatarX, avatarY, avatarSize, avatarSize, 24, "#F6F5F2");
+
+        try {
+          const imgObj = await loadImage(item.img);
+          ctx.save();
+          roundedClip(ctx, avatarX, avatarY, avatarSize, avatarSize, 24);
+          ctx.drawImage(imgObj, avatarX, avatarY, avatarSize, avatarSize);
+          ctx.restore();
+        } catch (e) {
+          ctx.fillStyle = "#86868B";
+          ctx.font = "700 36px sans-serif";
+          ctx.fillText("?", avatarX + 48, avatarY + 72);
+        }
+
+        const textStartX = avatarX + avatarSize + 28;
+        const maxTextW = boxW - avatarSize - 76;
+
+        ctx.fillStyle = "#1D1D1F";
+        ctx.font = "800 30px 'Noto Sans TC', sans-serif";
+        ctx.fillText(item.name || `角色 ${i + 1}`, textStartX, cardY + 54);
+
+        const bubbleY = cardY + 74;
+        const bubbleH = 58;
+        drawRoundedRect(ctx, textStartX, bubbleY, maxTextW, bubbleH, 18, "#F6F5F2");
+
+        ctx.fillStyle = "#333336";
+        ctx.font = "600 22px 'Noto Sans TC', sans-serif";
+        const txt = item.impression || "(未填寫)";
+        const clipped = fitText(ctx, txt, maxTextW - 32);
+        ctx.fillText(clipped, textStartX + 18, bubbleY + 37);
+      }
+
+      ctx.fillStyle = "#86868B";
+      ctx.font = "700 20px 'Noto Sans TC', sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("#吉祥物第一印象 • 同好交流使用", width / 2, totalH - 45);
+      ctx.textAlign = "left";
+
+      canvas.toBlob((blob) => {
+        lastGeneratedBlob = blob;
+        document.getElementById("modalPreviewImg").src = URL.createObjectURL(blob);
+        document.getElementById("modalOverlay").style.display = "flex";
+      }, "image/png");
+    }
+
+    function drawRoundedRect(ctx, x, y, width, height, radius, fill) {
       ctx.beginPath();
-      ctx.moveTo(colW1, 0);
-      ctx.lineTo(colW1, headerHeight);
-      ctx.moveTo(colW1 + colW2, 0);
-      ctx.lineTo(colW1 + colW2, headerHeight);
-      ctx.stroke();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      if (fill) {
+        ctx.fillStyle = fill;
+        ctx.fill();
+      }
+    }
 
-      // 圖片載入 Promise
-      const loadImg = (src) => new Promise(resolve => {
+    function roundedClip(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+      ctx.clip();
+    }
+
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
         const img = new Image();
-        img.crossOrigin = 'anonymous';
         img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
+        img.onerror = () => reject();
         img.src = src;
       });
-
-      // 4. 逐列繪製吉祥物與文字
-      for (let i = 0; i < totalRows; i++) {
-        const item = selectedMascots[i];
-        const rowTop = headerHeight + (i * rowHeight);
-        const rowCenterY = rowTop + (rowHeight / 2);
-
-        // 繪製吉祥物圖片
-        const imgObj = await loadImg(item.img);
-        if (imgObj) {
-          const maxW = colW1 * 0.72;
-          const maxH = rowHeight * 0.72;
-          const scale = Math.min(maxW / imgObj.width, maxH / imgObj.height);
-          const dw = imgObj.width * scale;
-          const dh = imgObj.height * scale;
-          const dx = (colW1 - dw) / 2;
-          const dy = rowTop + (rowHeight - dh) / 2;
-          ctx.drawImage(imgObj, dx, dy, dw, dh);
-        }
-
-        // 文字排版折行輔助函式
-        const drawWrapText = (text, cx, cy, maxW) => {
-          if (!text) return;
-          ctx.fillStyle = '#000000';
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          ctx.font = '700 36px "Noto Sans TC", sans-serif';
-
-          const lines = [];
-          text.split('\n').forEach(paragraph => {
-            let line = '';
-            for (let ch of paragraph) {
-              const testLine = line + ch;
-              if (ctx.measureText(testLine).width > maxW && line.length > 0) {
-                lines.push(line);
-                line = ch;
-              } else {
-                line = testLine;
-              }
-            }
-            if (line) lines.push(line);
-          });
-
-          const lh = 48;
-          const startY = cy - ((lines.length - 1) * lh) / 2;
-          lines.forEach((l, idx) => {
-            ctx.fillText(l, cx, startY + (idx * lh));
-          });
-        };
-
-        drawWrapText(item.defaultFirst, colW1 + colW2 / 2, rowCenterY, colW2 * 0.85);
-        drawWrapText(item.defaultCur, colW1 + colW2 + colW3 / 2, rowCenterY, colW3 * 0.85);
-
-        // 橫向分隔黑線
-        ctx.strokeStyle = '#000000';
-        ctx.lineWidth = borderWidth;
-        ctx.beginPath();
-        ctx.moveTo(0, rowTop + rowHeight);
-        ctx.lineTo(canvasWidth, rowTop + rowHeight);
-        ctx.stroke();
-      }
-
-      // 5. 縱向分隔黑線
-      ctx.strokeStyle = '#000000';
-      ctx.lineWidth = borderWidth;
-      ctx.beginPath();
-      ctx.moveTo(colW1, headerHeight);
-      ctx.lineTo(colW1, headerHeight + totalRows * rowHeight);
-      ctx.moveTo(colW1 + colW2, headerHeight);
-      ctx.lineTo(colW1 + colW2, headerHeight + totalRows * rowHeight);
-      ctx.stroke();
-
-      // 6. 外框大黑線
-      ctx.strokeRect(borderWidth / 2, borderWidth / 2, canvasWidth - borderWidth, headerHeight + totalRows * rowHeight - borderWidth / 2);
-
-      // 7. 底部活動 Hashtag
-      const tagText = cfgHashtag.value.trim();
-      if (tagText) {
-        ctx.fillStyle = '#777777';
-        ctx.textAlign = 'right';
-        ctx.textBaseline = 'middle';
-        ctx.font = '500 24px "Noto Sans TC", sans-serif';
-        ctx.fillText(tagText, canvasWidth - 24, canvasHeight - (footerHeight / 2));
-      }
-
-      return new Promise(resolve => {
-        canvas.toBlob(blob => {
-          latestGeneratedBlob = blob;
-          latestGeneratedDataUrl = canvas.toDataURL('image/png');
-          resolve({ blob, dataUrl: latestGeneratedDataUrl });
-        }, 'image/png');
-      });
     }
 
-    async function prepareImage(showModal = true) {
-      const { dataUrl } = await renderHighResCanvas();
-      modalImgResult.src = dataUrl;
-      if (showModal) {
-        shareModal.classList.remove('hidden');
+    function fitText(ctx, text, maxW) {
+      if (ctx.measureText(text).width <= maxW) return text;
+      let str = text;
+      while (str.length > 0 && ctx.measureText(str + "...").width > maxW) {
+        str = str.slice(0, -1);
       }
-      return dataUrl;
+      return str + "...";
     }
 
-    // 原生社群分享 (Web Share API)
-    async function executeNativeShare() {
-      await prepareImage(false);
-
-      if (navigator.share && latestGeneratedBlob) {
-        try {
-          const file = new File([latestGeneratedBlob], `吉祥物印象表_${Date.now()}.png`, { type: 'image/png' });
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-              files: [file],
-              title: '我的吉祥物印象表',
-              text: `${cfgHashtag.value.trim()} 一起來玩！`
-            });
-            showToast("已成功分享！");
-            return;
-          }
-        } catch (err) {
-          if (err.name !== 'AbortError') {
-            console.warn("Share API fallback:", err);
-          }
-        }
-      }
-
-      // 若裝置不支援原生傳送圖檔，則彈出預覽視窗讓使用者長按存圖或複製
-      shareModal.classList.remove('hidden');
-      showToast("請長按圖片直接加入照片庫！");
+    function downloadImage() {
+      if (!lastGeneratedBlob) return;
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(lastGeneratedBlob);
+      a.download = "mascot-impression.png";
+      a.click();
     }
 
-    // 下載圖片
-    function downloadImageFile() {
-      if (!latestGeneratedDataUrl) return;
-      const link = document.createElement('a');
-      link.download = `吉祥物印象表_${Date.now()}.png`;
-      link.href = latestGeneratedDataUrl;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      showToast("圖片下載已開始！");
+    function closeModal() {
+      document.getElementById("modalOverlay").style.display = "none";
     }
 
-    // 複製圖片到剪貼簿 (支援電腦與主流行動瀏覽器)
-    async function copyImageToClipboard() {
-      if (!latestGeneratedBlob) {
-        await prepareImage(false);
-      }
-      try {
-        if (navigator.clipboard && window.ClipboardItem) {
-          await navigator.clipboard.write([
-            new ClipboardItem({ 'image/png': latestGeneratedBlob })
-          ]);
-          showToast("圖片已複製到剪貼簿！可直接貼在發文區");
-        } else {
-          showToast("您的瀏覽器不支援剪貼影像，請長按或點下載");
-        }
-      } catch (err) {
-        console.error(err);
-        showToast("複製失敗，請長按圖片儲存");
-      }
-    }
-
-    // 綁定各項觸發動作
-    document.getElementById('btn-header-share').onclick = executeNativeShare;
-    document.getElementById('btn-native-share').onclick = executeNativeShare;
-    document.getElementById('modal-btn-native-share').onclick = executeNativeShare;
-
-    document.getElementById('btn-download-img').onclick = async () => {
-      await prepareImage(false);
-      downloadImageFile();
-    };
-    document.getElementById('modal-btn-download').onclick = downloadImageFile;
-
-    document.getElementById('btn-copy-img').onclick = copyImageToClipboard;
-    document.getElementById('modal-btn-copy').onclick = copyImageToClipboard;
-
-    document.getElementById('btn-close-modal').onclick = () => shareModal.classList.add('hidden');
-    shareModal.onclick = (e) => {
-      if (e.target === shareModal) shareModal.classList.add('hidden');
-    };
-
-    window.addEventListener('load', () => {
-      renderMascotPool();
-      renderQuickTags();
-      renderSelectedList();
-      updatePreviewTable();
-      lucide.createIcons();
-    });
+    initPool();
+    renderList();
   </script>
 </body>
 </html>
